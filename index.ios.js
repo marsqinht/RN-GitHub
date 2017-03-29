@@ -11,10 +11,12 @@ import {
   StyleSheet,
   Image,
   Text,
-  View
+  Navigator,
+  View,
+  TouchableOpacity
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';//底部导航
-
+import NavigationBar from './js/NavigationBar';
 export default class Github extends Component {
   constructor(props){
     super(props);
@@ -22,9 +24,23 @@ export default class Github extends Component {
       selectedTab: 'tab-home'
     }
   }
+  renderButton(image){
+    return <TouchableOpacity >
+              <Image style={{width:22, height:22,margin:4}}
+               source={image}></Image>
+            </TouchableOpacity>
+  }
   render() {
     return (
       <View style={styles.container}>
+        <NavigationBar
+          title = {'Boy'}
+          style = {{
+            backgroundColor:'#f08080'
+          }}
+          leftButton={this.renderButton(require('./assets/images/ic_arrow_back_white_36pt.png'))}
+          rightButton={this.renderButton(require('./assets/images/ic_star.png'))}
+        ></NavigationBar>
         <TabNavigator>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'tab-home'}
